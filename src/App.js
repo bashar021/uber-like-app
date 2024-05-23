@@ -1,25 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Homepage from './components/Homepage';
+import { Route, BrowserRouter as Router, Routes, useNavigate, Redirect } from "react-router-dom"
+import RideLogin from './components/LoginSingup/RideLogin';
+import UserDashboard from './components/User/UserDashboard';
+import DriverDashboard from './components/driver/DriverDashboard';
+import DriverLogin from './components/LoginSingup/DriverLogin'
+import UserHistory from './components/User/UserHistory';
+import DriverHistory from './components/driver/DriverHistory'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <Homepage></Homepage> */}
+      <Router>
+        <Routes>
+          <Route path="/" element={ <Homepage></Homepage>}></Route>
+          <Route path='/ride login' element={<RideLogin></RideLogin>}></Route>
+          <Route path='/user/dashboard' element={<UserDashboard></UserDashboard>}></Route>
+          <Route path='/driver/dashboard' element={<DriverDashboard></DriverDashboard>}></Route>
+          <Route path='/driver/login' element={<DriverLogin></DriverLogin>} ></Route>
+          <Route path='/user/trips/history' element={<UserHistory></UserHistory>}></Route>
+          <Route path='/driver/drives/history' element={<DriverHistory></DriverHistory>}></Route>
+
+
+        
+        </Routes>
+
+      </Router>
+    </>
+
+
   );
 }
-
 export default App;

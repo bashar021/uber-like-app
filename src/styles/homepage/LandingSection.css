@@ -1,0 +1,77 @@
+/* TravelSection.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .travel-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .travel-left {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .travel-left h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .book-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .book-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .travel-right {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .travel-right img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .travel-section {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .travel-left,
+    .travel-right {
+      padding: 10px;
+    }
+  
+    .travel-left h1 {
+      font-size: 1.5em;
+    }
+  
+    .book-button {
+      font-size: 0.9em;
+      padding: 8px 16px;
+    }
+  }
+  

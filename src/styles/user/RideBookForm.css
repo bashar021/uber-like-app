@@ -1,0 +1,90 @@
+/* RiderBookForm.css */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .content {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .input-box {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .input-box input[type="text"], .option input[type="date"], .option input[type="time"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  .address-drop-down{
+    position: absolute;
+    left: 0;
+    width: calc(100% - 2px);
+    top: calc(100% + 5px);
+    z-index: 5;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* display:none */
+  }
+  
+  .dropdown {
+    /* position: absolute;
+  
+   
+
+    
+   
+    z-index: 5; */
+  }
+/*   
+  .input-box:focus-within .address-drop-down {
+    display: block;
+  }
+   */
+  .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .option {
+    margin-bottom: 20px;
+  }
+  
+  .option label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .search-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  
+  .search-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 480px) {
+    .content {
+      width: 90%;
+    }
+  }
+  
