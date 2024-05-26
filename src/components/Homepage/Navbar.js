@@ -51,8 +51,9 @@ const Navbar = () => {
             <button className="close-button" onClick={toggleLoginPopup}>&times;</button>
             <h2>Login</h2>
             <p>Choose your option:</p>
-            <Link to='/ride login' >Login for Ride</Link><br/>
-            <Link to='/driver/login'>Login for Drive</Link>
+
+            <Link to='/ride login' className="popup-button"   >Login for Ride</Link><br/>
+            <Link to='/driver/login'className="popup-button">Login for Drive</Link>
           </div>
         </div>
 
@@ -63,8 +64,9 @@ const Navbar = () => {
             <button className="close-button" onClick={toggleSignupPopup}>&times;</button>
             <h2>Sign Up</h2>
             <p>Choose your option:</p>
-            <button className="popup-button">Sign Up for Ride</button>
-            <button className="popup-button">Sign Up for Drive</button>
+
+            <Link to='/ride/signup' className="popup-button">Sign Up for Ride</Link>
+            <Link to='/driver/signup' className="popup-button">Sign Up for Drive</Link>
           </div>
         </div>
       )}

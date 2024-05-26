@@ -1,11 +1,18 @@
-import React, { useState,useCallback ,useEffect} from 'react'
+import React, { useState, useCallback, useEffect, useContext } from 'react'
 import Post from '../../controllers/Post.js'
 import Get from '../../controllers/Get.js'
 // import axios from 'axios';
 import '../../styles/user/RideBookForm.css'
+import 'ldrs/dotPulse'
+import { dotPulse } from 'ldrs'
+import RideDetailsContext from '../../contexts/RideDetailsContext.js'
+import { FaMapMarkerAlt, FaCar, FaClock, FaCalendarAlt, FaMotorcycle } from 'react-icons/fa';
+
 
 
 export default function RideBookForm(props) {
+
+  const rideDetailsContext = useContext(RideDetailsContext)
   const [pickupLocation, setPickupLocation] = useState({});
   const [pickupLocationValue, setPickupLocationValue] = useState('')
   const [showPickupLocation, setShowPickupLocation] = useState([])
@@ -16,16 +23,21 @@ export default function RideBookForm(props) {
   const [time, setTime] = useState('');
   const [exampleAddresses, setExampleAddresses] = useState([]);
   const [distance, setDistance] = useState('')
-  const [loader,setLoader] = useState(false)
+  const [loader, setLoader] = useState(false)
+
+  dotPulse.register()
+
   // const exampleAddresses = ['123 Main St', '456 Elm St', '789 Oak St','123 Main St', '456 Elm St', '789 Oak St'];
-  
-  
-  async function checkStatus(number,id){
-    const data = await Get(`http://localhost:8080/user/ride/status/${number}/${id}`,'')
-    if(data.status === 200){
+
+
+  async function checkStatus(number, id) {
+    console.log('cecking status ')
+    const data = await Get(`http://localhost:8080/user/ride/status/${number}/${id}`, '')
+    if (data.status === 200) {
       const newData = await data.json()
       console.log(newData)
       props.setRideConfirm(newData.data)
+      rideDetailsContext.setCurrentRideDetails(newData.data)
       setLoader(false)
       return true
     }
@@ -34,17 +46,19 @@ export default function RideBookForm(props) {
   }
   const handleSearch = async () => {
     setLoader(true)
-    const details = {destinationName:pickupLocationValue,pickupAdd:dropofLocationValue,destinationLat:dropoffLocation.lat,destinationLon:dropoffLocation.lon,pickupAddLat:pickupLocation.lat,pickupAddLon:pickupLocation.lon,
-      
-      name:'bashar',
-      number:'8755021206',
-      date:date,
-      time:time
+    const details = {
+      destinationName: pickupLocationValue, pickupAdd: dropofLocationValue, destinationLat: dropoffLocation.lat, destinationLon: dropoffLocation.lon, pickupAddLat: pickupLocation.lat, pickupAddLon: pickupLocation.lon,
+
+      name: 'bashar',
+      number: '8755021206',
+      date: date,
+      time: time
     }
-    const data = await Post('http://localhost:8080/user/ride/req',details,'')
-    if(data.ok){
+    const data = await Post('http://localhost:8080/user/ride/req', details, '')
+    if (data.ok) {
       const newData = await data.json()
-      if(newData.data._id){
+      if (newData.data._id) {
+        // rideDetailsContext.setCurrentRideDetails(newData.data)
         const checkStatusRepeatedly = async () => {
           const status = await checkStatus('8755021206', newData.data._id);
           if (!status) {
@@ -55,28 +69,28 @@ export default function RideBookForm(props) {
             // Handle other status codes
           }
         };
-  
+
         checkStatusRepeatedly();
       }
     }
     console.log(data)
-   
+
   };
-  
+
   async function handlePickupLocation(e) {
-  
+
     setTimeout(async () => {
       const data = await fetchSuggestions(e.target.value);
       setShowPickupLocation([...data]);
-      
+
     }, 1000);
-    
+
   }
   // useEffect(() => {
   //   const timeoutId = setTimeout(async () => {
   //     const data = await fetchSuggestions(setPickupLocationValue);
   //     setShowPickupLocation([...data]);
-  
+
   //     console.log('hii')
   //   }, 500);
   //   return () => clearTimeout(timeoutId);
@@ -102,12 +116,12 @@ export default function RideBookForm(props) {
     }
   };
 
-  async function handleDropofLocation(e){
-    setTimeout(async() => {
+  async function handleDropofLocation(e) {
+    setTimeout(async () => {
       const data = await fetchSuggestions(e.target.value);
       setShowDropoffLocation([...data])
     }, 1000);
-   
+
 
   }
   const handleDropoffChange = (item) => {
@@ -129,7 +143,7 @@ export default function RideBookForm(props) {
 
   };
 
- 
+
   const fetchSuggestions = async (query, setFunc) => {
     try {
       if (query.length > 2) {
@@ -140,7 +154,7 @@ export default function RideBookForm(props) {
         }
       } else {
         return []
-       
+
       }
 
     } catch (error) {
@@ -183,81 +197,91 @@ export default function RideBookForm(props) {
 
 
   return (
-    <div className="container">
-      <div className="content">
-        <div className="input-box">
-          <input
-            type="text"
-            placeholder="Pickup Location"
-            className="pickup-input"
-            value={pickupLocationValue}
-            onChange={(e) => { handlePickupLocation(e); setPickupLocationValue(e.target.value); }}
-          />
-          <div class='address-drop-down' >
-            {showPickupLocation.map((item, index) => {
-              return (
-                <div key={index} className="dropdown-item" onClick={() => { handlePickupChange(item); }}>
-                  {item.display_name}
-                </div>
-              )
+   
+    <>
+
+      <div className="container">
+        <div className="content">
+          <div className="input-box">
+            <FaMapMarkerAlt className="input-icon" />
+            <input
+              type="text"
+              placeholder="Pickup Location"
+              className="pickup-input"
+              value={pickupLocationValue}
+              onChange={(e) => { handlePickupLocation(e); setPickupLocationValue(e.target.value); }}
+            />
+            {showPickupLocation.length > 0 ?
+              <div className="address-drop-down">
+                {showPickupLocation.map((item, index) => (
+                  <div key={index} className="dropdown-item" onClick={() => handlePickupChange(item)}>
+                    {item.display_name}
+                  </div>
+                ))}
+              </div> : ''
             }
-            )}
 
           </div>
 
-
-
-
-        </div>
-        <div className="input-box">
-          <input
-            type="text"
-            placeholder="Dropoff Location"
-            className="dropoff-input"
-            value={dropofLocationValue}
-            onChange={(e) => { setDropofLocationValue(e.target.value); handleDropofLocation(e); }}
-          />
-         
-            <div class='address-drop-down' >
-              {showDropofLocation.map((item, index) => {
-                return (
-                  <div key={index} className="dropdown-item" onClick={() => { handleDropoffChange(item) }}>
+          <div className="input-box">
+            <FaMapMarkerAlt className="input-icon" />
+            <input
+              type="text"
+              placeholder="Dropoff Location"
+              className="dropoff-input"
+              value={dropofLocationValue}
+              onChange={(e) => { setDropofLocationValue(e.target.value); handleDropofLocation(e); }}
+            />
+            {showDropofLocation.length > 0 ?
+              <div className="address-drop-down">
+                {showDropofLocation.map((item, index) => (
+                  <div key={index} className="dropdown-item" onClick={() => handleDropoffChange(item)}>
                     {item.display_name}
                   </div>
-                )
-              }
-              )}
-            </div>
-         
+                ))}
+              </div> : ''
+            }
 
+          </div>
 
+          <div className="option">
+            <FaCalendarAlt className="input-icon" />
+            <label htmlFor="date">Date:</label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              className="date-input"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
+          <div className="option">
+            <FaClock className="input-icon" />
+            <label htmlFor="time">Time:</label>
+            <input
+              type="time"
+              id="time"
+              name="time"
+              className="time-input"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            />
+          </div>
+          <div className="option">
+            <FaCar className="input-icon" />
+            <label htmlFor="vehicleType">Vehicle Type</label>
+            <select name="vehicleType" id="vehicleType" className="vehicle-select">
+              <option value="scooty">Scooty</option>
+              <option value="bike">Bike</option>
+            </select>
+          </div>
+          <button className="search-btn" onClick={handleSearch}>
+          {loader ? <p style={{padding:'0px',margin:'0px'}}> <l-dot-pulse size="43" speed="1.3" color="white" ></l-dot-pulse></p> : 'Search'}
+          </button>
         </div>
-        <div className="option">
-          <label htmlFor="date">Date:</label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            className="date-input"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-        </div>
-        <div className="option">
-          <label htmlFor="time">Time:</label>
-          <input
-            type="time"
-            id="time"
-            name="time"
-            className="time-input"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
-        </div>
-        <button className="search-btn" onClick={handleSearch}>Search</button>
-        {loader?<p>Searching...</p>:''}
       </div>
-    </div>
+    </>
   );
 
 }

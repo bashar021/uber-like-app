@@ -1,90 +1,155 @@
-/* RiderBookForm.css */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .content {
-    width: 400px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-  }
-  
-  .input-box {
-    position: relative;
-    margin-bottom: 20px;
-  }
-  
-  .input-box input[type="text"], .option input[type="date"], .option input[type="time"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-  }
-  .address-drop-down{
-    position: absolute;
-    left: 0;
-    width: calc(100% - 2px);
-    top: calc(100% + 5px);
-    z-index: 5;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-top: none;
-    border-radius: 0 0 5px 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* display:none */
-  }
-  
-  .dropdown {
-    /* position: absolute;
-  
-   
 
-    
-   
-    z-index: 5; */
+
+.container {
+  width: 40%;
+  margin: auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+  margin-top: 4%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-box {
+  position: relative;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.pickup-input, .dropoff-input{
+  width: 75%;
+  padding: 12px 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+ .date-input, .time-input, .vehicle-select {
+  width: 100%;
+  padding: 12px 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.pickup-input:focus, .dropoff-input:focus, .date-input:focus, .time-input:focus, .vehicle-select:focus {
+  border-color: #007BFF;
+}
+
+.address-drop-down {
+  position: absolute;
+  width: 100%;
+  top: 50px;
+  left: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background: #007BFF;
+  color: white;
+}
+
+.option {
+  width: 100%;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.option label {
+  flex: 1;
+  font-size: 16px;
+  color: #333;
+}
+
+.option input, .option select {
+  flex: 2;
+}
+
+.search-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  color: white;
+  background: #007BFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-btn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007BFF;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
   }
-/*   
-  .input-box:focus-within .address-drop-down {
-    display: block;
+  to {
+      opacity: 1;
+      transform: translateY(0);
   }
-   */
-  .dropdown-item {
-    padding: 10px;
-    cursor: pointer;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
   }
-  
-  .option {
-    margin-bottom: 20px;
+  100% {
+      transform: rotate(360deg);
   }
-  
-  .option label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .search-btn {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007BFF;
-    color: #fff;
-    font-size: 1em;
-    cursor: pointer;
-  }
-  
-  .search-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  @media (max-width: 480px) {
-    .content {
+}
+
+@media (max-width: 768px) {
+  .container {
       width: 90%;
-    }
   }
-  
+
+  .pickup-input, .dropoff-input, .date-input, .time-input, .vehicle-select {
+      padding: 12px 30px;
+  }
+
+  .input-icon {
+      left: 5px;
+  }
+}

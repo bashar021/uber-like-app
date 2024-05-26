@@ -83,6 +83,8 @@
 
 
    /* UserNavbar.css */
+
+/*    
 .user-navbar {
     display: flex;
     justify-content: space-between;
@@ -125,6 +127,7 @@
     font-size: 1.2em;
     margin-left: 5px;
     cursor: pointer;
+    display: none;
   }
   
   .dropdown {
@@ -137,6 +140,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 5px;
     display: none;
+   
   }
   
   .dropdown.show {
@@ -167,4 +171,120 @@
       top: 30px;
     }
   }
-  
+   */
+
+
+
+   /* Add this to your CSS file */
+.user-navbar {
+  background-color: #f7f7f7;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.website-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-right: 2rem;
+}
+
+.user-options {
+  display: flex;
+  align-items: center;
+}
+
+.user-trip-option {
+  margin-right: 2rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.user-trip-option:hover {
+  color: #337ab7;
+}
+
+.avatar-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.avatar-icon {
+  font-size: 1.5rem;
+  color: #337ab7;
+  margin-right: 0.5rem;
+}
+
+.arrow-icon {
+  font-size: 1rem;
+  color: #337ab7;
+  margin-left: 0.5rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  display: none;
+  z-index: 10;
+}
+
+.dropdown.show {
+  display: block;
+}
+
+.dropdown-option {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-option:hover {
+  background-color: #f0f0f0;
+}
+
+/* Add animation to dropdown */
+.dropdown {
+  animation: dropdown 0.3s ease;
+}
+
+@keyframes dropdown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Make it responsive */
+@media (max-width: 768px) {
+  .user-navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .website-name {
+    margin-bottom: 1rem;
+  }
+  .user-options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .user-trip-option {
+    margin-bottom: 1rem;
+  }
+  .avatar-container {
+    margin-bottom: 1rem;
+  }
+}

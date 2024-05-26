@@ -1,0 +1,6 @@
+#dash-board-cont{
+    display: flex;
+    column-gap: 5%;
+    padding-left: 5%;
+    /* background-color: aqua; */
+}

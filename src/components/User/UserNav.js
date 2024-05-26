@@ -11,20 +11,21 @@ export default function UserNav() {
     };
   
     return (
+   
       <nav className="user-navbar">
-        <div className="website-name">WebsiteName</div>
-        <div className="user-options">
-          <div onClick={()=>{navigate('/user/trips/history')}} className="user-trip-option">My Trip</div>
-          <div className="avatar-container" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
-            <div className="avatar-icon">&#128100;</div>
-            <div className={`dropdown ${showDropdown ? 'show' : ''}`}>
-              <div className="dropdown-option">Settings</div>
-              <div onClick={()=>{navigate('/user/dashboard')}} className="dropdown-option">Ride</div>
-              <div className="dropdown-option">Details</div>
-            </div>
-            <div className="arrow-icon">&#9660;</div>
-          </div>
-        </div>
-      </nav>
+  <div className="website-name">WebsiteName</div>
+  <div className="user-options">
+    <div onClick={() => navigate('/user/trips/history')} className="user-trip-option">My Trip</div>
+    <div className="avatar-container" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
+      <div className="avatar-icon">&#128100;</div>
+      <div className="arrow-icon">&#9660;</div>
+      <div className={`dropdown ${showDropdown ? 'show' : ''}`}>
+        <div className="dropdown-option">Settings</div>
+        <div onClick={() => navigate('/user/dashboard')} className="dropdown-option">Ride</div>
+        <div className="dropdown-option">Details</div>
+      </div>
+    </div>
+  </div>
+</nav>
     );
 }

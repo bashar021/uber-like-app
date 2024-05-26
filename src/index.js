@@ -3,12 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import DriveDetails from './contexts/DriveDetails';
+import RideDetails from './contexts/RideDetails';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
- 
-    <App />
- 
+    <RideDetails>
+        <DriveDetails>
+            <App />
+        </DriveDetails>
+    </RideDetails>
+
+
+
+
+
 );
 
 // If you want to start measuring performance in your app, pass a function

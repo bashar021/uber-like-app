@@ -1,3 +1,10 @@
+ #drive-dashboard-cont{
+  display: flex;
+  column-gap: 5%;
+  margin-left: 5%;
+  flex-direction: row;
+}
+/* 
 .book-ride-container {
     width: 300px;
     padding: 20px;
@@ -64,4 +71,131 @@
       margin: 5px 10px;
     }
   }
-  
+    */
+
+
+  /* src/LeftSection.css */
+.book-ride-container {
+  width: 45%;
+  height: 100%;
+  /* background-color: #45a049; */
+  padding: 20px;
+  background: linear-gradient(135deg, #ececec, #f9f9f9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  top:50%;
+  margin-top: 10%;
+  /* top:50%; */
+  /* left:50%; */
+  /* left: 10%; */
+  /* transform: translate(-50%,0); */
+}
+
+.book-ride-heading {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #333;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.book-ride-description {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease-in-out 0.5s;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.book-ride-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+  animation: fadeIn 1s ease-in-out 1s;
+}
+
+.book-ride-button .icon {
+  margin-right: 8px;
+}
+
+.book-ride-button.find {
+  background: #4caf50;
+}
+
+.book-ride-button.cancel {
+  background: #f44336;
+}
+
+.book-ride-button:hover {
+  transform: scale(1.05);
+}
+
+.book-ride-button.find:hover {
+  background: #45a049;
+}
+
+.book-ride-button.cancel:hover {
+  background: #e53935;
+}
+
+.searching-text {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+  animation: blink 1s step-start 0s infinite;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  50% {
+      opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .book-ride-container {
+      padding: 15px;
+  }
+
+  .book-ride-heading {
+      font-size: 24px;
+  }
+
+  .book-ride-description {
+      font-size: 14px;
+  }
+
+  .book-ride-button {
+      padding: 12px 16px;
+      font-size: 14px;
+  }
+
+  .searching-text {
+      font-size: 14px;
+  }
+}

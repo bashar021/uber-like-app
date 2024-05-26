@@ -7,10 +7,24 @@ export default function LandingSection() {
   
   return (
     <div className="travel-section">
-      <div className="travel-left">
+      {/* <div className="travel-left">
         <h1>We are everywhere for you</h1>
         <button onClick={()=>{navigate('/ride login')}} className="book-button">Book a Ride</button>
-      </div>
+      </div> */}
+      <div className="book-ride-container">
+            <div className="content">
+                <h1 className="headline">Your Ride, Your Way</h1>
+                <p className="tagline">Book a ride with ease and comfort. Fast, Reliable, and Safe.</p>
+                <p className="description">
+                    Experience the best ride booking service in town. Whether you need a quick ride across the city or a
+                    comfortable journey to your destination, we've got you covered. Our professional drivers and well-maintained
+                    vehicles ensure a safe and pleasant trip every time.
+                </p>
+                <button  onClick={()=>{navigate('/ride login')}} className="book-ride-btn">Book a Ride</button>
+            </div>
+        </div>
+
+
       <div className="travel-right">
         <img src={travelImage} alt="Travel" />
       </div>

@@ -1,37 +1,5 @@
 /* 
 .user-ride-detail {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .section {
-    margin-bottom: 20px;
-  }
-  
-  h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-  
-  p {
-    margin: 5px 0;
-  }
-  
-  @media (max-width: 768px) {
-    .user-ride-detail {
-      padding: 10px;
-    }
-  
-    h2 {
-      font-size: 1.2em;
-    }
-  }
-   */
-
-   /* UserRideDetail.css */
-.user-ride-detail {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -59,4 +27,35 @@
       padding: 15px;
     }
   }
-  
+   */
+
+
+
+   .user-ride-detail {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    margin-top: 5%;
+  }
+  .header {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
+  .header h2 {
+    font-size: 20px;
+    margin: 0;
+    color: #333;
+  }
+  .details p {
+    margin: 0;
+    line-height: 1.5;
+    color: #666;
+  }
+  .details p strong {
+    font-weight: bold;
+    color: #333;
+  }
